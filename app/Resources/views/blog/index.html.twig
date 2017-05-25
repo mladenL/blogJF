@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Derniers épisodes</h1>
+
+    <table>
+
+        {% for blog in blogs %}
+            <tr>
+                <td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.id }}</a></td>
+                <td>{% if blog.date %}{{ blog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ blog.title }}</td>
+                <td>{{ blog.content }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blog_show', { 'id': blog.id }) }}">Lire</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blog_edit', { 'id': blog.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_new') }}">Créer un nouvel épisode</a>
+        </li>
+    </ul>
+{% endblock %}

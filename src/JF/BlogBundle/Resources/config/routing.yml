@@ -1,0 +1,3 @@
+jf_blog_homepage:
+    path:     /
+    defaults: { _controller: JFBlogBundle:Blog:index }

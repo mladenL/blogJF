@@ -1,3 +1,11 @@
+jf_blog_blog:
+    resource: "@JFBlogBundle/Controller/BlogController.php"
+    type:     annotation
+
+jf_blog:
+    resource: "@JFBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
