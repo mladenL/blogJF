@@ -2,12 +2,109 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Blog de Jean FORTEROCHE{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset ('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset ('assets/css/style.css') }}">
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+{# NAVBAR #}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Jean Forteroche</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Blog <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">L'auteur</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">L'oeuvre <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Mode lecture</a></li>
+            <li><a href="#">Marque-page</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Commenter un passage</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Partager</a></li>
+          </ul>
+        </li>
+      </ul>
+      {#}
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="termes, passages...">
+        </div>
+        <button type="submit" class="btn btn-default">Rechercher</button>
+      </form>
+      #}
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
+              <!--<span class="caret"></span>-->
+            
+            <ul class="dropdown-menu">
+              <li>
+                <a href="{{ path('fos_user_security_logout') }}">
+                      {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                      </a>
+              </li>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    <li><a href="/register">S'inscrire</a></li>
+                {% endif %}
+              </li>
+              
+              
+            </ul>
+          </li>
+        </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{# END NAVBAR #}
+
+{# FOS USER BUNDLE #}
+
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+{# END FOS USER BUNDLE #}
+<div class="container">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+</div>
     </body>
+    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script>
+    $(function() {
+      $(function() {
+        $('.dropdown').hover(function() {
+         $(this).children('ul').stop(true, false, true).fadeToggle(400);
+        });
+      });
+    });
+    </script>
 </html>
