@@ -3,28 +3,42 @@
 {% block body %}
     <h1>Derniers épisodes</h1>
 
-    <table>
-
         {% for blog in blogs %}
-            <tr>
-                <td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.id }}</a></td>
-                <td>{% if blog.date %}{{ blog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ blog.title }}</td>
-                <td>{{ blog.content }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('blog_show', { 'id': blog.id }) }}">Lire</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('blog_edit', { 'id': blog.id }) }}">Modifier</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            <div class="container-fluid post_container">
+                <table>
+                <tr>
+                    <td>
+                        <h2>
+                            {% if blog.date %}{{ blog.date|date('d-m-Y H:i:s') }}
+                            {% endif %}
+                        </h2>
+                    </td>
+                    <td>
+                        <h2>
+                            {{ blog.title }}
+                        </h2>
+                    </td>
+                    <td>
 
-    </table>
+                            <a href="{{ path('blog_show', { 'id': blog.id }) }}">Lire</a><br/>
+
+                            <a href="{{ path('blog_edit', { 'id': blog.id }) }}">Modifier</a>
+
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                    <td>
+                        {{ blog.content }}
+                    </td>
+                    </td>
+                
+                
+
+                </tr>
+                </table>
+            </div>
+        {% endfor %}
 
     <ul>
         <li>
