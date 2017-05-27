@@ -170,6 +170,18 @@ table tr td:nth-child(2) {
 
 }
 
+@font-face {
+    font-family: 'sears_towerregular';
+    src: url('/assets/fonts/searstower_regular_macroman/Sears_Tower-webfont.eot');
+    src: url('/assets/fonts/searstower_regular_macroman/Sears_Tower-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/searstower_regular_macroman/Sears_Tower-webfont.woff') format('woff'),
+         url('/assets/fonts/searstower_regular_macroman/Sears_Tower-webfont.ttf') format('truetype'),
+         url('/assets/fonts/searstower_regular_macroman/Sears_Tower-webfont.svg#sears_towerregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 /*Blog Police*/
 h1 {
   font-family: lovers_quarrelregular;
@@ -177,11 +189,11 @@ h1 {
 }
 
 h2 {
-  font-family: carbontyperegular;
+  font-family: sears_towerregular;
   font-size: 1.4em;
 }
 
 td:nth-child(2) {
-  font-family: kingthings_trypewriter_2Rg;
-  font-size: 1em;
+  font-family: sears_towerregular;
+  font-size: 1.2em;
 }
