@@ -4,9 +4,19 @@
     <h1>Créer un épisode</h1>
 
     {{ form_start(form) }}
+
         {{ form_widget(form) }}
-        <input type="submit" value="Créer" />
+
+    <input type="submit" value="Créer" />
     {{ form_end(form) }}
+    
+
+    <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#jf_blogbundle_blog_content'
+        });
+    </script>
 
     <ul>
         <li>
