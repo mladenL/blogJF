@@ -20,14 +20,24 @@ class BlogController extends Controller
      * @Route("/", name="blog_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $blogs = $em->getRepository('JFBlogBundle:Blog')->findAll();
+    /**
+     * @var $paginator \Knp\Component\Pager\Paginator
+     */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $blogs, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 3)/*limit per page*/
+        );
+        dump(get_class($paginator));
 
         return $this->render('blog/index.html.twig', array(
-            'blogs' => $blogs,
+            'blogs' => $result,
         ));
     }
 

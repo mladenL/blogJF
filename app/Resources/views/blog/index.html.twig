@@ -40,6 +40,10 @@
             </div>
         {% endfor %}
 
+        <div class="navigation text-center">
+            {{ knp_pagination_render(blogs) }}
+        </div>
+
     <ul>
         <li>
             <a href="{{ path('blog_new') }}">Créer un nouvel épisode</a>
