@@ -321,7 +321,6 @@ td:nth-child(2) {
 td:nth-child(2) p {
   word-wrap: break-word;
   hyphens: auto;
-  border: red solid;
 }
 
 #mceu_11 {
